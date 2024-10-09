@@ -85,7 +85,11 @@ export default function RoleForm({ id, role }: { id?: string; role?: any }) {
       <p className="text-2xl font-bold text-center">
         {id ? "Edit" : "Create"} Role
       </p>
-      {submissionError && <Alert severity="error" className="mt-5">{submissionError}</Alert>}
+      {submissionError && (
+        <Alert severity="error" className="mt-5">
+          {submissionError}
+        </Alert>
+      )}
       <div className="grid md:grid-cols-2 gap-5 my-5">
         <div>
           <TextField

@@ -43,10 +43,10 @@ export default function UserList({ usersData }: { usersData: any }) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell >{row.email}</TableCell>
-              <TableCell >{row.phone_no}</TableCell>
-              <TableCell >{row.role.name}</TableCell>
-              <TableCell >
+              <TableCell>{row.email}</TableCell>
+              <TableCell>{row.phone_no}</TableCell>
+              <TableCell>{row.role.name}</TableCell>
+              <TableCell>
                 <div className="flex w-full gap-3 items-center h-full ">
                   <Link
                     href={`/admin/user/edit/${row.id}`}

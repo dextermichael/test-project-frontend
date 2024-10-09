@@ -32,15 +32,13 @@ export default function SignIn() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignInSchemaType>({ resolver: zodResolver(SignInSchema) });
+  const [submissionError, setSubmissionError] = useState("");
   const searchParams = useSearchParams();
-  const [submissionError, setSubmissionError] = useState(null);
   useEffect(() => {
     if (searchParams.get("error")) {
       if (searchParams.get("error") == "AccessDenied") {
-        // @ts-ignore
         setSubmissionError("This Account Does Not Exist");
       } else {
-        // @ts-ignore
         setSubmissionError("Invalid Username or Password");
       }
     }
@@ -50,9 +48,7 @@ export default function SignIn() {
       redirect: true,
       ...data,
     });
-    // @ts-ignore
     if (result) {
-      // @ts-ignore
       setSubmissionError("Invalid Username or Password");
     }
   };

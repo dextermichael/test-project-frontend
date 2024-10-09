@@ -1,11 +1,7 @@
 "use client";
-import {  updateUserSettings } from "@/lib/server-function/user";
+import { updateUserSettings } from "@/lib/server-function/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Alert,
-  Button,
-  TextField,
-} from "@mui/material";
+import { Alert, Button, TextField } from "@mui/material";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,7 +12,6 @@ const UserSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   name: z.string().min(3, "Name Should Contain Minimum 3 Letters"),
   phone_no: z.string().min(3, "Phone No Should Contain Minimum 3 Letters"),
-  
   password: z
     .string()
     .max(20, { message: "Password must be at most 20 characters" })
@@ -24,14 +19,7 @@ const UserSchema = z.object({
 });
 type UserSchemaType = z.infer<typeof UserSchema>;
 
-export default function AccountForm({
-  
-  user,
-}: {
-  
-  
-  user: any;
-}) {
+export default function AccountForm({ user }: { user: any }) {
   const router = useRouter();
   const {
     register,
@@ -49,23 +37,27 @@ export default function AccountForm({
   const [submissionSuccess, setSubmissionSuccess] = useState(null);
 
   const onSubmit = async (data: any) => {
-
-      const response: any = await updateUserSettings(data);
-      if (response.status == "success") {
-        //@ts-ignore
-        setSubmissionSuccess("Account Update Successfully")
-      } else {
-        setSubmissionError(response.message);
-      }
-    
+    const response: any = await updateUserSettings(data);
+    if (response.status == "success") {
+      //@ts-ignore
+      setSubmissionSuccess("Account Update Successfully");
+    } else {
+      setSubmissionError(response.message);
+    }
   };
   return (
     <form className="pb-2" onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-2xl font-bold text-center">
-        Update Account Settings
-      </p>
-      {submissionError && <Alert severity="error" className="mt-5">{submissionError}</Alert>}
-      {submissionSuccess && <Alert severity="success" className="mt-5">{submissionSuccess}</Alert>}
+      <p className="text-2xl font-bold text-center">Update Account Settings</p>
+      {submissionError && (
+        <Alert severity="error" className="mt-5">
+          {submissionError}
+        </Alert>
+      )}
+      {submissionSuccess && (
+        <Alert severity="success" className="mt-5">
+          {submissionSuccess}
+        </Alert>
+      )}
       <div className="grid md:grid-cols-2 gap-5 my-5">
         <div>
           <TextField
@@ -98,7 +90,7 @@ export default function AccountForm({
             className="w-full"
           />
         </div>
-        
+
         <div>
           <TextField
             variant="outlined"
