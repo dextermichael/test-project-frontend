@@ -9,10 +9,8 @@ export default function SignOut() {
 
   useEffect(() => {
     // Sign out the user
-    signOut({ redirect: false });
+    signOut({ redirect: true });
 
-    // Redirect to home or login page after logout
-    router.push("/"); // Replace '/login' with the path you want to redirect to
   }, [router]);
 
   return (

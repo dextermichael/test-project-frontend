@@ -144,7 +144,7 @@ export const authOptions: NextAuthOptions = {
           return false;
         
       }
-      if (account.provider === "azzure-ad") {
+      if (account.provider === "azure-ad") {
        
           const res = await fetch(
             `${process.env.NEXT_API_URL}/v1/auth/login-oauth`,
